@@ -1,8 +1,14 @@
-const productInput = document.querySelector('input[type="text"]');
-const priceInput = document.querySelector('input[type="number"]');
+const productInput = document.querySelector('#income-input');
+const priceInput = document.querySelector('#income-price');
+
+const sumField = document.getElementById('sum');
+console.log(sumField.textContent);
 
 export function onIncome(e) {
-
+  if (productInput.value == '' || priceInput == '') {
+    alert('Income section fields required !');
+    return;
+  }
   const tr = document.createElement('tr');
   let tdProduct = document.createElement('td');
   tdProduct.textContent = productInput.value;
@@ -19,11 +25,11 @@ export function onIncome(e) {
   tr.appendChild(tdDate);
   document.querySelector('.income-table tbody').appendChild(tr);
 
-  let previousTotal = Number(document.getElementById('sum').textContent);
+  let previousTotal = Number(sumField.textContent);
   let result = previousTotal + priceInput.valueAsNumber;
 
-  document.getElementById('sum').textContent = result;
-
+  sumField.textContent = result;
+  
   productInput.value = '';
   priceInput.value = '';
 }
